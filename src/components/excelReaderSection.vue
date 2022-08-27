@@ -1,12 +1,12 @@
 <template>
   <div class="w-full flex flex-col items-center">
-      <slot></slot>
+    <slot></slot>
     <form
       class="flex flex-col w-full items-center justify-center my-5"
       @submit.prevent="submit"
     >
       <div class="lg:w-2/5 w-3/4 flex flex-col my-5">
-        <p>ارسال محصولات</p>
+        <p class="dark:text-slate-100 text-slate-800">ارسال محصولات</p>
         <label
           for="file"
           class="mt-1 dark:text-slate-100 bg-slate-100 rounded-lg z-10 dark:bg-sky-900 w-full px-2 py-1 text-slate-800 flex flex-row justify-start"
@@ -62,7 +62,7 @@ export default {
     function submit() {
       formData.append("_token", useCookies().cookies.get("_token"));
       formData.append("groupAdd", 1);
-      emit("sendData", formData);
+      emit('sendData', formData);
     }
     return { submit, test, fileInputValue };
   },

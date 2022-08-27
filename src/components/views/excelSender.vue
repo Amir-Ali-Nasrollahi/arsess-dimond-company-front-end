@@ -20,14 +20,14 @@
           نکته !!
         </h1>
         <h3 class="font-bold">فایل اکسل شما باید شامل 8 ستون باشد</h3>
-        <h2>ستون اول : نام محصول</h2>
-        <h2>ستون دوم : نام انبار</h2>
-        <h2>ستون سوم : سریال محصول</h2>
-        <h2>ستون چهارم : کد شش رقمی</h2>
-        <h2>ستون پنجم : دسته محصول</h2>
-        <h2>ستون ششم : محصول اموال شرکت است؟ (باید با صفر و یک باشد)</h2>
-        <h2>ستون هفتم : محصول مصرفی است؟ (باید با صفر و یک باشد)</h2>
-        <h2>ستون هشتم : محصول کالا فروشی است؟ (باید با صفر و یک باشد)</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون اول : نام محصول</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون دوم : نام انبار</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون سوم : سریال محصول</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون چهارم : کد شش رقمی</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون پنجم : دسته محصول</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون ششم : محصول اموال شرکت است؟ (باید با صفر و یک باشد)</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون هفتم : محصول مصرفی است؟ (باید با صفر و یک باشد)</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون هشتم : محصول کالا فروشی است؟ (باید با صفر و یک باشد)</h2>
 
         <h1 class="font-bold">یک یعنی بله صفر یعنی خیر</h1>
       </div>
