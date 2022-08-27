@@ -3,10 +3,31 @@
     class="flex lg:flex-col flex-row justify-around flex-wrap items-center"
   >
     <h1 class="text-xl dark:text-slate-50 text-slate-800">
-      تعداد کل محصولات انبار : {{ (value.data).length }}
+      تعداد کل محصولات انبار : {{ value.data.length }}
     </h1>
     <div
-      class="lg:w-5/6 md:w-1/3 w-3/4 dark:bg-sky-900 flex flex-col items-center bg-slate-100 rounded-lg h-fit p-1 transition duration-100 ease-linear hover:shadow-lg my-2 text-slate-800 dark:text-slate-50"
+      v-if="sp"
+      class="md:w-1/2 w-3/4 mt-8 bg-yellow-500/50 text-amber-900 p-2 text-md dark:text-amber-100 rounded-xl text-center"
+    >
+      <h1
+        class="dark:text-amber-400 text-amber-600 text-xl font-bold"
+        dir="rtl"
+      >
+        نکته !!
+      </h1>
+      <h3 class="lg:text-base text-lg">
+        شما میتوانید برای ارسال محصولات از
+        <router-link
+          :to="{ name: 'groupSend' }"
+          class="dark:text-amber-400 font-semibold hover:underline text-amber-600"
+        >
+          ارسال گروهی
+        </router-link>
+        استفاده کنید.
+      </h3>
+    </div>
+    <div
+      class="lg:w-5/6 md:w-1/3 w-3/4 dark:bg-sky-900 flex flex-col items-center bg-slate-100 rounded-lg h-fit p-1 transition duration-100 ease-linear hover:shadow-lg dark:hover:shadow-sky-600/40 hover:shadow-slate-500/10 my-2 text-slate-800 dark:text-slate-50"
       v-if="active && found"
       v-for="val in value.data"
     >
@@ -53,7 +74,11 @@
 
       <div class="hidden test" :id="'div' + val.product.id">
         <div v-for="des in val.product.describe">
-          <h1 class="p-2 bg-slate-200 my-1 rounded-lg dark:bg-sky-800 dark:text-slate-100">{{ des.describe }}</h1>
+          <h1
+            class="p-2 bg-slate-200 my-1 rounded-lg dark:bg-sky-800 dark:text-slate-100"
+          >
+            {{ des.describe }}
+          </h1>
         </div>
       </div>
     </div>
@@ -70,10 +95,12 @@ import loadingSection from "./loadingSection.vue";
 import notFoundProduct from "./notFoundProduct.vue";
 // import {} from "vue-router";
 import router from "../router";
+import { RouterLink } from "vue-router";
 export default {
   components: {
     loadingSection,
-    notFoundProduct
+    notFoundProduct,
+    RouterLink,
   },
   props: {
     val: Object,
@@ -143,8 +170,8 @@ export default {
       }
     });
     function showDitails(e) {
-      const divId = document.getElementById('div' + e.target.id).classList;
-      (divId.contains("hidden")) ? divId.remove('hidden') : divId.add('hidden');
+      const divId = document.getElementById("div" + e.target.id).classList;
+      divId.contains("hidden") ? divId.remove("hidden") : divId.add("hidden");
     }
 
     const sp = ref("");
@@ -153,14 +180,14 @@ export default {
     function sendProduct(e) {
       router.push("/dashboard/sendProduct/" + e.product.id + "/" + e.store_id);
     }
-    
+
     return {
       sendProduct,
       active,
       found,
       value,
       sp,
-      showDitails
+      showDitails,
     };
   },
 };

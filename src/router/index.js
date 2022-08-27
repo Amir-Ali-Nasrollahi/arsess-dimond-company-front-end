@@ -61,7 +61,11 @@ const router = createRouter({
           component: Home,
           props: (route) => ({ query: route.query.data }),
         },
-
+        {
+          path:"productsgroupsend",
+          name:"groupSend",
+          component: () => import("../components/views/groupSendProduct.vue")
+        },
         {
           path: "requests",
           name: "requests",
@@ -82,7 +86,7 @@ const router = createRouter({
             {
               path: "withExcel",
               name:"excel",
-              component: () => import("../components/excelReaderSection.vue"),
+              component: () => import("../components/views/excelSender.vue"),
             },
             {
               path: "addStore",
@@ -108,7 +112,6 @@ const router = createRouter({
         },
       ],
     },
-    { path:'/test', component: () => import("../components/selectInput.vue") },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
     // {
     //   path: "/about",

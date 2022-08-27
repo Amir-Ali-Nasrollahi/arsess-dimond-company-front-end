@@ -6,7 +6,7 @@
       در انبار <span v-for="store in props.store" class="font-bold">{{ store.name + " ، " }}</span> جستجو کنید
     </h1>
     <search-box :data="data" @updateName="test"></search-box>
-    <product-section class="mt-16" :val="value"></product-section>
+    <product-section class="mt-12" :val="value"></product-section>
   </div>
 </template>
 
