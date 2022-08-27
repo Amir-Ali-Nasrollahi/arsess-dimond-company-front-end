@@ -2,6 +2,13 @@
   <div
     class="flex w-full lg:flex-col lg:items-center items-start lg:justify-start justify-center flex-wrap flex-row"
   >
+    <button
+      class="bg-blue-500 dark:text-slate-100 self-start px-2 py-1 rounded-lg"
+      @click="acceptAll"
+      v-if="show"
+    >
+      قبول کردن همه
+    </button>
     <div
       v-if="load == true && show == true"
       class="flex dark:bg-sky-700 p-2 rounded-xl bg-slate-300 mt-5 lg:w-11/12 w-3/4 lg:flex-row lg:items-center lg:justify-between flex-col text-md"
@@ -18,7 +25,9 @@
       </h2>
       <h2 class="flex flex-wrap">
         نوع :
-        <h3 class="font-bold">{{ (value.product.is_own == 1) ? "اموال شرکت":"محصول مصرفی" }}</h3>
+        <h3 class="font-bold">
+          {{ value.product.is_own == 1 ? "اموال شرکت" : "محصول مصرفی" }}
+        </h3>
       </h2>
       <h2 class="flex flex-wrap w-16 lg:mx-1 mx-0">
         تعداد :
@@ -131,6 +140,8 @@ function deleteProductRequests(e) {
       document.getElementById("div" + data.id).classList.add("hidden");
     })
     .catch(function () {
+      cl.value =
+        "m-3 rounded-lg p-2 text-right bg-rose-500 text-md text-slate-900 shadow-lg shadow-rose-400/20";
       notify({
         title: "اوه نه!!",
         type: "error",
@@ -138,4 +149,12 @@ function deleteProductRequests(e) {
       });
     });
 }
+
+const acceptAll = () => {
+  axios
+    .post("http://localhost:8000/api/acceptAll", {
+      _token: useCookies().cookies.get("_token"),
+    })
+    .then(() => {});
+};
 </script>

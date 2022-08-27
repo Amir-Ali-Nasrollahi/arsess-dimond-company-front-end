@@ -20,14 +20,30 @@
           نکته !!
         </h1>
         <h3 class="font-bold">فایل اکسل شما باید شامل 8 ستون باشد</h3>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون اول : نام محصول</h2>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون دوم : نام انبار</h2>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون سوم : سریال محصول</h2>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون چهارم : کد شش رقمی</h2>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون پنجم : دسته محصول</h2>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون ششم : محصول اموال شرکت است؟ (باید با صفر و یک باشد)</h2>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون هفتم : محصول مصرفی است؟ (باید با صفر و یک باشد)</h2>
-        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">ستون هشتم : محصول کالا فروشی است؟ (باید با صفر و یک باشد)</h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون اول : نام محصول
+        </h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون دوم : نام انبار
+        </h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون سوم : سریال محصول
+        </h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون چهارم : کد شش رقمی
+        </h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون پنجم : دسته محصول
+        </h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون ششم : محصول اموال شرکت است؟ (باید با صفر و یک باشد)
+        </h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون هفتم : محصول مصرفی است؟ (باید با صفر و یک باشد)
+        </h2>
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون هشتم : محصول کالا فروشی است؟ (باید با صفر و یک باشد)
+        </h2>
 
         <h1 class="font-bold">یک یعنی بله صفر یعنی خیر</h1>
       </div>
@@ -64,6 +80,8 @@ export default {
           });
         })
         .catch(function () {
+          cl.value =
+            "m-3 rounded-lg p-2 text-right bg-rose-500 text-md text-slate-900 shadow-lg shadow-rose-400/20";
           notify({
             title: "اوه نه!!",
             type: "error",
