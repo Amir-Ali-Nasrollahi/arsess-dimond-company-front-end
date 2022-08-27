@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base{
+    @font-face {
+        font-family: 'yekan';
+        src: url("../public/font/Yekan-Bakh-FaNum-04-Regular.woff") format("woff");
+    }
+    html{
+        font-family: 'yekan';
+    }
+}
