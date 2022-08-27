@@ -23,7 +23,7 @@
       </div>
     </form>
     <h1 class="text-3xl mt-10">لیست دسته محصول ها</h1>
-    <div class="flex flex-col flex-wrap w-2/3 justify-around">
+    <div class="flex flex-col flex-wrap w-2/3 justify-around" v-if="load">
       <div
         class="dark:bg-sky-900 bg-slate-100 px-2 py-1 mx-2 rounded flex flex-col lg:flex-row justify-around text-xl mt-2"
         v-for="value in allCategory.data"
@@ -42,6 +42,7 @@
         </button>
       </div>
     </div>
+    <loadingSectionVue v-else />
     <notifications :classes="cl" />
   </div>
 </template>
@@ -52,7 +53,7 @@ import axios from "axios";
 import { onMounted, reactive, ref } from "vue";
 import { useCookies } from "vue3-cookies";
 import router from "../../router/index.js";
-
+import loadingSectionVue from "../loadingSection.vue";
 const { cookies } = useCookies();
 
 onMounted(() => {
@@ -100,11 +101,12 @@ function submit() {
 const allCategory = reactive({
   data: "",
 });
+const load = ref(false)
 axios
   .get("http://localhost:8000/api/category/" + cookies.get("_token"))
   .then((re) => {
     allCategory.data = re.data.value;
-    console.log(re);
+    load.value = true;
   });
 
 const deleteCategory = (e) => {

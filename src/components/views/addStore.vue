@@ -34,7 +34,7 @@
       <notifications :classes="cl" />
     </form>
     <h1 class="text-3xl mt-10">لیست انبار ها</h1>
-    <div class="flex flex-col flex-wrap w-2/3 justify-around">
+    <div class="flex flex-col flex-wrap w-2/3 justify-around" v-if="load">
       <div
         class="dark:bg-sky-900 bg-slate-100 px-2 py-1 mx-2 rounded flex flex-col lg:flex-row justify-around text-xl mt-2"
         v-for="value in stores"
@@ -45,9 +45,15 @@
             value.created_at.replace("T", " / ").replace(".000000Z", " ")
           }}
         </h1>
-        <button class="bg-red-500 text-slate-100 lg:w-20 w-full rounded-lg" v-on:click="deleteStore(value.id)">حذف</button>
+        <button
+          class="bg-red-500 text-slate-100 lg:w-20 w-full rounded-lg"
+          v-on:click="deleteStore(value.id)"
+        >
+          حذف
+        </button>
       </div>
     </div>
+    <loadingSectionVue v-else />
   </div>
 </template>
 
@@ -56,7 +62,7 @@ import { notify } from "@kyvg/vue3-notification";
 import axios from "axios";
 import { onMounted, reactive, ref } from "vue";
 import { useCookies } from "vue3-cookies";
-
+import loadingSectionVue from "../loadingSection.vue";
 const stores = ref();
 const { cookies } = useCookies();
 onMounted(() => {
@@ -76,23 +82,29 @@ const data = reactive({
   _token: cookies.get("_token"),
 });
 function deleteStore(e) {
-  axios.delete("http://localhost:8000/api/deleteStore/" + cookies.get("_token") + "/" + e).then(function () {
-    "m-3 rounded-lg p-2 text-right bg-green-500 text-md text-slate-900 shadow-lg shadow-green-400/20";
-    cl.value =
+  axios
+    .delete(
+      "http://localhost:8000/api/deleteStore/" + cookies.get("_token") + "/" + e
+    )
+    .then(function () {
+      "m-3 rounded-lg p-2 text-right bg-green-500 text-md text-slate-900 shadow-lg shadow-green-400/20";
+      cl.value =
         "m-3 rounded-lg p-2 text-right bg-rose-500 text-md text-slate-900 shadow-lg shadow-rose-400/20";
       notify({
         title: "انبار حذف شد !!",
         type: "success",
         text: "انبار با موفقیت حذف شد ...",
       });
-  });
+    });
 }
 let cl = ref(
   "m-3 rounded-lg p-2 text-right bg-rose-500 text-md text-slate-900 shadow-lg shadow-rose-400/20"
 );
+const load = ref(false);
 axios
   .get("http://localhost:8000/api/getAllStores/" + cookies.get("_token"))
   .then(function (response) {
+    load.value = true;
     stores.value = response.data.value;
   });
 function submit() {
