@@ -14,9 +14,9 @@
     >
       <div class="flex flex-col w-5/6 sm:w-1/2">
         <h2 class="text-lg">انبارک شما</h2>
-        <div class="flex mt-5" v-if="load">
+        <div class="flex flex-col mt-5" v-if="load">
           <div
-            class="dark:bg-sky-900 lg:w-4/6 md:w-5/6 w-full p-2 md:mx-0 mx-1 rounded-lg bg-slate-100"
+            class="dark:bg-sky-900 mt-3 lg:w-4/6 md:w-5/6 w-full p-2 md:mx-0 mx-1 rounded-lg bg-slate-100"
             v-if="res.data != null"
             v-for="value in res.data"
           >
@@ -34,7 +34,7 @@
             </h4>
             <button
               v-on:click="backToStore(value.product.id)"
-              class="bg-blue-500 m-1 lg:w-24 h-8 rounded-xl text-white text-lg"
+              class="bg-blue-500 m-1 lg:w-24 w-full h-8 rounded-xl text-white text-lg"
             >
               بازگرداندن
             </button>

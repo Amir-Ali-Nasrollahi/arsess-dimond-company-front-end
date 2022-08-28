@@ -32,7 +32,7 @@
       v-for="val in value.data"
     >
       <div
-        class="flex lg:justify-between lg:flex-row flex-col lg:items-center lg:text-md text-xl lg:h-20 h-fit w-full"
+        class="flex lg:justify-between px-1 lg:flex-row flex-col lg:items-center lg:text-md text-xl lg:h-20 h-fit w-full"
       >
         <h1>نام دستگاه : {{ val.product.name }}</h1>
         <h1 class="mx-">
@@ -72,13 +72,59 @@
         </div>
       </div>
 
-      <div class="hidden test" :id="'div' + val.product.id">
-        <div v-for="des in val.product.describe">
-          <h1
-            class="p-2 bg-slate-200 my-1 rounded-lg dark:bg-sky-800 dark:text-slate-100"
+      <div class="hidden test w-full" :id="'div' + val.product.id">
+        <div class="overflow-x-auto relative shadow-md sm:rounded-lg m-1">
+          <table
+            class="w-full text-base text-left text-gray-500 dark:text-gray-100"
           >
-            {{ des.describe }}
-          </h1>
+            <thead
+              class="text-base font-bold text-gray-700 uppercase bg-gray-50 dark:bg-sky-800 dark:text-gray-100"
+            >
+              <tr>
+                <th scope="col" class="py-3 px-6">کاربر فرستنده</th>
+                <th scope="col" class="py-3 px-6">انبار فرستنده</th>
+                <th scope="col" class="py-3 px-6">کاربر گیرنده</th>
+                <th scope="col" class="py-3 px-6">انبار گیرنده</th>
+                <th scope="col" class="py-3 px-6">وضعیت محصول</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="bg-white border-t dark:bg-sky-900 dark:border-sky-700"
+                v-for="des in val.product.describe"
+              >
+                <td class="py-4 px-6">{{ des.user_sender }}</td>
+                <td class="py-4 px-6">
+                  <h2 class="w-fit mx-auto px-2 py-1">
+                    {{ des.store_sender ? des.store_sender : "-" }}
+                  </h2>
+                </td>
+                <td class="py-4 px-6">
+                  <h2 class="w-fit mx-auto px-2 py-1">
+                    {{ des.user_geter ? des.user_geter : "-" }}
+                  </h2>
+                </td>
+                <td class="py-4 px-6">
+                  <h2 class="w-fit mx-auto px-2 py-1">
+                    {{ des.store_geter ? des.store_geter : "-" }}
+                  </h2>
+                </td>
+                <td class="py-4 md:px-6 px-4">
+                  <h2
+                    class="w-fit mx-auto px-2 py-1 rounded-lg"
+                    :class="{
+                      'text-green-500': des.status,
+                      'bg-green-500/20': des.status,
+                      'text-red-500': !des.status,
+                      'bg-red-500/20': !des.status,
+                    }"
+                  >
+                    {{ des.status ? "تایید شده" : "رد شده" }}
+                  </h2>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
