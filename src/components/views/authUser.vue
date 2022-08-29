@@ -2,7 +2,7 @@
   <section class="w-full" v-if="show">
     <button
       @click="showAllUser()"
-      class="bg-blue-500 px-2 py-1 rounded-lg hover:underline w-fit mr-10"
+      class="bg-blue-500 text-white px-2 py-1 rounded-lg hover:underline w-fit mr-10"
     >
       {{ allUser == true ? "نمایش درخواست ها" : "نمایش تمامی کاربران" }}
     </button>

@@ -34,7 +34,7 @@
     <router-link
       active-class="text-blue"
       class="flex flex-col dark:text-slate-200 items-center lg:w-full w-fit outline-none hover:underline"
-      :to="'/dashboard/products'"
+      :to="'/dashboard/products/'"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

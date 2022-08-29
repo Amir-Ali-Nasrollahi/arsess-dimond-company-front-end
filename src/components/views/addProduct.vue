@@ -2,7 +2,7 @@
   <div class="w-full flex flex-col mt-10 items-center justify-center">
     <router-link
       :to="{ name: 'excel' }"
-      class="bg-blue-500 px-2 py-1 self-start mx-5 rounded-lg"
+      class="bg-blue-500 text-white px-2 py-1 self-start mx-5 rounded-lg"
       >ورود گروهی</router-link
     >
     <h1 class="text-3xl">ورود محصول</h1>
@@ -90,11 +90,11 @@
       <div
         class="md:w-1/2 w-3/4 mt-3 flex flex-row justify-center items-center"
       >
-        <label class="md:text-sm text-md" for="is_product"
+        <label class="md:text-sm text-md" for="is_spent"
           >محصول مصرفی است؟</label
         >
         <input
-          id="count"
+          id="is_spent"
           name="count"
           class="w-4 mt-1 mx-3 rounded-lg text-lg dark:bg-sky-700 h-4 bg-slate-100"
           type="radio"
@@ -109,7 +109,7 @@
           >کالا فروشی است؟</label
         >
         <input
-          id="count"
+          id="is_product"
           name="count"
           class="w-4 mt-1 mx-3 rounded-lg text-lg dark:bg-sky-700 h-4 bg-slate-100"
           type="radio"

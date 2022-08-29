@@ -51,7 +51,7 @@ const router = createRouter({
           component: Report,
         },
         {
-          path: "products",
+          path: "products/:page([0-9]*)",
           name: "products",
           component: Products,
           props: (route) => ({ query: route.query.data }),

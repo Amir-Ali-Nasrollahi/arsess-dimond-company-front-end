@@ -25,6 +25,7 @@ export default {
   },
   setup(p) {
     const props = p.data.data;
+    
     const data = ref(null);
     const value = reactive({
       store_id: [],

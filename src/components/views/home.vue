@@ -65,7 +65,7 @@
         <h4 class="text-indigo-800">فقط باید دسترسی داشته باشی :)</h4>
         <router-link
           class="bg-indigo-700 text-xl m-3 rounded-md lg:w-fit w-5/6 text-center p-2"
-          :to="'/dashboard/products'"
+          :to="'/dashboard/products/'"
           >انتقال محصولات</router-link
         >
       </div>

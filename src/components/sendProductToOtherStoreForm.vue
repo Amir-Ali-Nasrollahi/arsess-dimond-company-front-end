@@ -67,7 +67,7 @@ export default {
       axios
         .post("http://localhost:8000/api/sendtootherstore", sendData)
         .then(function (re) {
-          router.push('/dashboard/products');
+          router.push('/dashboard/products/');
         });
     }
     return { data, p, submit, props, sendData };

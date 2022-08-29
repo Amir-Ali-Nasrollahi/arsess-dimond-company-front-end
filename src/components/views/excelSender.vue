@@ -3,7 +3,7 @@
     <div class="w-fit mx-5 mt-10 pt-1">
       <router-link
         :to="'/dashboard/requests/addProduct'"
-        class="bg-blue-500 px-2 py-1 self-start rounded-lg"
+        class="bg-blue-500 text-white px-2 py-1 self-start rounded-lg"
         >ورود تکی</router-link
       >
     </div>

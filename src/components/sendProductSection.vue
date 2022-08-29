@@ -89,9 +89,8 @@ export default {
     function submit() {
       axios
         .post("http://localhost:8000/api/bag", input)
-        .then(function (re) {
-          // console.log(re)
-          router.push("/dashboard/products");
+        .then(function () {
+          router.push("/dashboard/products/");
         })
         .catch(function () {
           notify({

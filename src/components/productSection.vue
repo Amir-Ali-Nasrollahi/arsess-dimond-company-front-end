@@ -2,12 +2,9 @@
   <section
     class="flex lg:flex-col flex-row justify-around flex-wrap items-center"
   >
-    <h1 class="text-xl dark:text-slate-50 text-slate-800">
-      تعداد کل محصولات انبار : {{ value.data.length }}
-    </h1>
     <div
       v-if="sp"
-      class="md:w-1/2 w-3/4 mt-8 bg-yellow-500/50 text-amber-900 p-2 text-md dark:text-amber-100 rounded-xl text-center"
+      class="md:w-1/2 w-3/4 bg-yellow-500/50 text-amber-900 p-2 text-md dark:text-amber-100 rounded-xl text-center"
     >
       <h1
         class="dark:text-amber-400 text-amber-600 text-xl font-bold"
@@ -34,22 +31,22 @@
       <div
         class="flex lg:justify-between px-1 lg:flex-row flex-col lg:items-center lg:text-md text-xl lg:h-20 h-fit w-full"
       >
-        <h1>نام دستگاه : {{ val.product.name }}</h1>
+        <h1>نام دستگاه : {{ val.name }}</h1>
         <h1 class="mx-">
           نوع دستگاه :
           {{
-            val.product.is_own == true
+            val.is_own == true
               ? "اموال شرکت"
-              : val.product.is_product == true
+              : val.is_product == true
               ? "کالا فروشی"
               : "مصرفی"
           }}
         </h1>
-        <h2>کد دستگاه : {{ val.product.code }}</h2>
-        <h2>سریال دستگاه : {{ val.product.serial }}</h2>
+        <h2>کد دستگاه : {{ val.code }}</h2>
+        <h2>سریال دستگاه : {{ val.serial }}</h2>
         <div class="lg:w-auto w-full text-center lg:mt-0 mt-2">
           <button
-            :id="val.product.id"
+            :id="val.id"
             @click="showDitails"
             class="text-blue-500 transition-all duration-75 ease-linear hover:underline"
           >
@@ -72,7 +69,7 @@
         </div>
       </div>
 
-      <div class="hidden test w-full" :id="'div' + val.product.id">
+      <div class="hidden test w-full" :id="'div' + val.id">
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg m-1">
           <table
             class="w-full text-base text-left text-gray-500 dark:text-gray-100"
@@ -80,7 +77,7 @@
             <thead
               class="text-base font-bold text-gray-700 uppercase bg-gray-50 dark:bg-sky-800 dark:text-gray-100"
             >
-              <tr>
+              <tr class="text-center">
                 <th scope="col" class="py-3 px-6">کاربر فرستنده</th>
                 <th scope="col" class="py-3 px-6">انبار فرستنده</th>
                 <th scope="col" class="py-3 px-6">کاربر گیرنده</th>
@@ -91,7 +88,7 @@
             <tbody>
               <tr
                 class="bg-white border-t dark:bg-sky-900 dark:border-sky-700"
-                v-for="des in val.product.describe"
+                v-for="des in val.describe"
               >
                 <td class="py-4 px-6">{{ des.user_sender }}</td>
                 <td class="py-4 px-6">
@@ -115,11 +112,19 @@
                     :class="{
                       'text-green-500': des.status,
                       'bg-green-500/20': des.status,
-                      'text-red-500': !des.status,
-                      'bg-red-500/20': !des.status,
+                      'text-red-500': des.status == false,
+                      'bg-red-500/20': des.status == false,
+                      'bg-blue-500/20': des.status == null,
+                      'text-blue-500': des.status == null,
                     }"
                   >
-                    {{ des.status ? "تایید شده" : "رد شده" }}
+                    {{
+                      des.status == true
+                        ? "تایید شده"
+                        : des.status == null
+                        ? "در حال انتظار"
+                        : "رد شده"
+                    }}
                   </h2>
                 </td>
               </tr>
@@ -130,6 +135,27 @@
     </div>
     <notFoundProduct v-else-if="!found" />
     <loadingSection v-else />
+    <div class="flex flex-row justify-between w-5/6 mt-3">
+      <button
+        class="bg-blue-500 text-lg px-2 py-1 rounded-lg text-slate-100 hover:underline"
+        @click="showPrev()"
+        v-if="page > 1"
+      >
+        صفحه قبل
+      </button>
+      <button
+        class="bg-blue-500 text-lg px-2 py-1 shadow-none rounded-lg text-slate-100 opacity-70 cursor-not-allowed"
+        v-else
+      >
+        صفحه قبل
+      </button>
+      <button
+        class="bg-blue-500 text-lg px-2 py-1 rounded-lg text-slate-100 hover:underline"
+        @click="showMore()"
+      >
+        صفحه بعدی
+      </button>
+    </div>
   </section>
 </template>
 
@@ -141,7 +167,7 @@ import loadingSection from "./loadingSection.vue";
 import notFoundProduct from "./notFoundProduct.vue";
 // import {} from "vue-router";
 import router from "../router";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 export default {
   components: {
     loadingSection,
@@ -155,17 +181,19 @@ export default {
     const active = ref(false);
     const { cookies } = useCookies();
     const found = ref(true);
+    let page = ref(1);
+    page.value = useRoute().params.page ? Number(useRoute().params.page) : 1;
     const value = reactive({
       data: "",
     });
     if (p.val.search == "") {
       axios
-        .post("http://localhost:8000/api/showStore", {
+        .post("http://localhost:8000/api/showStore?page=" + page.value, {
           _token: cookies.get("_token"),
           id: p.val.store_id,
         })
         .then(function (response) {
-          value.data = response.data.value;
+          value.data = response.data.value[0].data;
         })
         .catch(function () {
           found.value = false;
@@ -179,13 +207,16 @@ export default {
         found.value = true;
         active.value = false;
         axios
-          .post("http://localhost:8000/api/showStore", {
+          .post("http://localhost:8000/api/showStore?page=" + page.value, {
             _token: cookies.get("_token"),
             id: p.val.store_id,
           })
           .then(function (response) {
             found.value = true;
-            value.data = response.data.value;
+            if (Number(response.data.value[0].data) == Number([])) {
+              router.push("/notFound");
+            }
+            value.data = response.data.value[0].data;
           })
           .catch(function () {
             found.value = false;
@@ -203,7 +234,6 @@ export default {
             code: p.val.search,
           })
           .then(function (response) {
-            console.log(response);
             found.value = true;
             value.data = response.data.value;
           })
@@ -222,9 +252,32 @@ export default {
 
     const sp = ref("");
     sp.value = Boolean(useCookies().cookies.get("sp"));
-    // console.log(sp.value)
+
     function sendProduct(e) {
-      router.push("/dashboard/sendProduct/" + e.product.id + "/" + e.store_id);
+      router.push("/dashboard/sendProduct/" + e.id + "/" + e.store_id);
+    }
+    // console.log(page.value)
+    function showMore() {
+      page.value += 1;
+      router.push({ name: "products", params: { page: page.value } });
+      axios
+        .post("http://localhost:8000/api/showStore?page=" + page.value, {
+          _token: cookies.get("_token"),
+        })
+        .then((response) => {
+          value.data = response.data.value[0].data;
+        });
+    }
+    function showPrev() {
+      page.value -= 1;
+      router.push({ name: "products", params: { page: page.value } });
+      axios
+        .post("http://localhost:8000/api/showStore?page=" + page.value, {
+          _token: cookies.get("_token"),
+        })
+        .then((response) => {
+          value.data = response.data.value[0].data;
+        });
     }
 
     return {
@@ -234,6 +287,9 @@ export default {
       value,
       sp,
       showDitails,
+      showMore,
+      showPrev,
+      page,
     };
   },
 };
