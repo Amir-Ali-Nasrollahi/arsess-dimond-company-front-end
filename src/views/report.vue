@@ -95,7 +95,7 @@ export default {
       //         category_name: searchBoxData.value,
       //       })
       //       .then(function (response) {
-      //         console.log(response)
+
       //         const dataSendCount = ref([]);
       //         const dataGetCount = ref([]);
       //         const dataLabels = ref([]);
@@ -161,13 +161,9 @@ export default {
             useCookies().cookies.get("_token")
         )
         .then(function (response) {
-          const count = ref([]);
-          const names = ref([]);
+          const count = ref(response.data.value.count);
+          const names = ref(response.data.value.names);
 
-          for (const i of Object.keys(response.data.value)) {
-            count.value.push(response.data.value[i]);
-            names.value.push(i);
-          }
           function getRandomInt(max) {
             return Math.floor(Math.random() * max);
           }

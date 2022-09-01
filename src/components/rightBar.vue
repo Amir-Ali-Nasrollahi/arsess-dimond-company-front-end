@@ -20,7 +20,7 @@
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="1.5"
           >
             <path
               stroke-linecap="round"
@@ -244,12 +244,12 @@ export default {
       activeTolTip.value = false;
     }
     function submit() {
-      console.log(input.confirmPassword);
+
       if (input.confirmPassword == input.newPassword) {
         axios
           .post("http://localhost:8000/api/changePassword", input)
           .then((re) => {
-            console.log(re)
+
             cl.value =
               "m-3 rounded-lg p-2 text-right bg-green-500 text-md text-slate-900 shadow-lg shadow-green-400/20";
             notify({

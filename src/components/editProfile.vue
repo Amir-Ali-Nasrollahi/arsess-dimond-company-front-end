@@ -201,7 +201,7 @@ export default {
     }
     function submit() {
       axios.patch('http://localhost:8000/api/editUser/' + useCookies().cookies.get('_token'), d).then((re) => {
-        console.log(re)
+
       })
     }
     return { value, d, getStoreValue, show, submit };

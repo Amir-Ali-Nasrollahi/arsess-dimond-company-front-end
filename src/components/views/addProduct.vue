@@ -168,7 +168,7 @@ function changeIsOwnValue(val) {
   } else {
     data.is_own = true;
   }
-  console.log(data);
+
 }
 onMounted(() => {
   axios
@@ -213,7 +213,7 @@ function submit() {
   axios
     .post("http://localhost:8000/api/product", data)
     .then(function (re) {
-      console.log(re);
+
       cl.value =
         "m-3 rounded-lg p-2 text-right bg-green-500 text-md text-slate-900 shadow-lg shadow-green-400/20";
       notify({

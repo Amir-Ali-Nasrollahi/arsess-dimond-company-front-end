@@ -7,7 +7,7 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        stroke-width="2"
+        stroke-width="1.5"
         v-if="theme"
         @click="changeTheme"
       >
@@ -24,7 +24,7 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        stroke-width="2"
+        stroke-width="1.5"
         v-else
         @click="changeTheme"
       >

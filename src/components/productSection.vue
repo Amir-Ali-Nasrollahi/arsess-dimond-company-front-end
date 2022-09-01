@@ -152,7 +152,7 @@
       <button
         class="bg-blue-500 text-lg px-2 py-1 rounded-lg text-slate-100 hover:underline"
         @click="showMore()"
-      >
+        v-if="Object.keys(value.data).length > 0">
         صفحه بعدی
       </button>
     </div>
@@ -256,7 +256,7 @@ export default {
     function sendProduct(e) {
       router.push("/dashboard/sendProduct/" + e.id + "/" + e.store_id);
     }
-    // console.log(page.value)
+
     function showMore() {
       page.value += 1;
       router.push({ name: "products", params: { page: page.value } });

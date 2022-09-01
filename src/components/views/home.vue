@@ -117,7 +117,8 @@ export default {
           product_id: e,
           _token: cookies.get("_token"),
         })
-        .then(function () {
+        .then(function (res) {
+
           notify({
             title: "عملیات موفقیت امیز",
             type: "success",
