@@ -1,35 +1,18 @@
-# vue-project
+hello bro :)
+its little english document
+# how to upload vue project in linux server
+### 1- get upload file from all these directories
 
-This template should help get you started developing with Vue 3 in Vite.
+first you must open **dist** directory and fetch see all files that in the directory.
 
-## Recommended IDE Setup
+### 2- eject dist folder from all folders and upload on your server
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+in the its step you should copy dist directory to other place in system (optional)
 
-## Customize configuration
+you get this folder and with drag and drop or with **ftp** command (more in linux) upload dist directory to server
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### 3- run dists files in server
 
-## Project Setup
+and in this step you should open dist and copy or cut all dist contents that included **index.html** file and other ....
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+copy them to ***public_html*** directory in server and finish :)
