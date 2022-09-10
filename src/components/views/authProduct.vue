@@ -3,9 +3,9 @@
     class="flex w-full lg:flex-col lg:items-center items-start lg:justify-start justify-center flex-wrap flex-row"
   >
     <button
-      class="bg-blue-500 dark:text-slate-100 self-start px-2 py-1 rounded-lg"
+      class="bg-blue-500 text-slate-100 self-start px-2 py-1 rounded-lg"
       @click="acceptAll"
-      v-if="show"
+      v-if="show == true"
     >
       قبول کردن همه
     </button>
@@ -56,7 +56,7 @@
         <h2 class="flex flex-wrap">
           تاریخ ارسال :
           <h3 class="font-bold">
-            {{ value.updated_at.replace("T", "  /").replace(".000000Z", "") }}
+            {{ new Date(value.updated_at).toLocaleDateString('fa-IR') + " - " + new Date(value.updated_at).toLocaleTimeString('fa-IR') }}
           </h3>
         </h2>
         <div class="flex lg:flex-row flex-col">
@@ -170,6 +170,8 @@ const acceptAll = () => {
     .post("http://localhost:8000/api/acceptAll", {
       _token: useCookies().cookies.get("_token"),
     })
-    .then(() => {});
+    .then((re) => {
+      console.log(re)
+    });
 };
 </script>

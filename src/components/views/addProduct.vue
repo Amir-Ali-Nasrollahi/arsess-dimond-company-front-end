@@ -20,14 +20,13 @@
         />
       </div>
       <div class="md:w-1/2 w-3/4 mt-3">
-        <label class="md:text-sm text-md" for="code">کد شش رقمی محصول</label>
+        <label class="md:text-sm text-md" for="code">کد محصول(حداقل 5 رقم)</label>
         <input
           v-model="data.code"
           id="code"
           class="w-full mt-1 rounded-lg text-lg dark:bg-sky-700 h-10 bg-slate-100"
           type="number"
           min="100000"
-          max="1000000"
         />
       </div>
 
@@ -72,6 +71,15 @@
             {{ store.name }}
           </option>
         </datalist>
+      </div>
+      <div class="md:w-1/2 w-3/4 mt-3">
+        <label class="md:text-sm text-md" for="code">imei دستگاه (اختیاری)</label>
+        <input
+          v-model="data.imei"
+          id="imei"
+          class="w-full mt-1 rounded-lg text-lg dark:bg-sky-700 h-10 bg-slate-100"
+          type="number"
+        />
       </div>
       <div
         class="md:w-1/2 w-3/4 mt-3 flex flex-row justify-center items-center"
@@ -187,6 +195,7 @@ const data = reactive({
   name: "",
   code: "",
   category: "",
+  imei:"",
   store: "",
   serial: "",
   spend: false,

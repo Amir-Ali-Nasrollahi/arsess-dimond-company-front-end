@@ -43,6 +43,7 @@
           }}
         </h1>
         <h2>کد دستگاه : {{ val.code }}</h2>
+        <h2>imei دستگاه: {{ (val.imei) ? val.imei : ' - ' }}</h2>
         <h2>سریال دستگاه : {{ val.serial }}</h2>
         <div class="lg:w-auto w-full text-center lg:mt-0 mt-2">
           <button
@@ -80,6 +81,7 @@
               <tr class="text-center">
                 <th scope="col" class="py-3 px-6">کاربر فرستنده</th>
                 <th scope="col" class="py-3 px-6">انبار فرستنده</th>
+                <th scope="col" class="py-3 px-6">تاریخ ارسال</th>
                 <th scope="col" class="py-3 px-6">کاربر گیرنده</th>
                 <th scope="col" class="py-3 px-6">انبار گیرنده</th>
                 <th scope="col" class="py-3 px-6">وضعیت محصول</th>
@@ -98,9 +100,16 @@
                 </td>
                 <td class="py-4 px-6">
                   <h2 class="w-fit mx-auto px-2 py-1">
+                    {{ new Date(des.created_at).toLocaleDateString('fa-IR') + " - " + new Date(des.created_at).toLocaleTimeString('fa-IR') }}
+                  </h2>
+                </td>
+                
+                <td class="py-4 px-6">
+                  <h2 class="w-fit mx-auto px-2 py-1">
                     {{ des.user_geter ? des.user_geter : "-" }}
                   </h2>
                 </td>
+
                 <td class="py-4 px-6">
                   <h2 class="w-fit mx-auto px-2 py-1">
                     {{ des.store_geter ? des.store_geter : "-" }}
@@ -108,7 +117,7 @@
                 </td>
                 <td class="py-4 md:px-6 px-4">
                   <h2
-                    class="w-fit mx-auto px-2 py-1 rounded-lg"
+                    class="w-24 mx-auto px-2 text-center py-1 rounded-lg"
                     :class="{
                       'text-green-500': des.status,
                       'bg-green-500/20': des.status,
@@ -165,7 +174,6 @@ import { reactive, ref, watch } from "vue";
 import { useCookies } from "vue3-cookies";
 import loadingSection from "./loadingSection.vue";
 import notFoundProduct from "./notFoundProduct.vue";
-// import {} from "vue-router";
 import router from "../router";
 import { RouterLink, useRoute } from "vue-router";
 export default {

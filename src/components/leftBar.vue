@@ -16,7 +16,7 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="md:h-10 md:w-10 w-6 h-6"
+        class="md:h-10 md:w-10 w-7 h-7"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -38,7 +38,7 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="md:dark:h-slate-100 md:w-9 md:h-9 w-6 h-6 text-center"
+        class="md:dark:h-slate-100 md:w-9 md:h-9 w-7 h-7 text-center"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -59,7 +59,7 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="md:dark:h-slate-100 md:w-9 md:h-9 w-6 h-6 "
+        class="md:dark:h-slate-100 md:w-9 md:h-9 w-7 h-7 "
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -80,7 +80,7 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="md:dark:h-slate-100 md:w-9 md:h-9 w-6 h-6 "
+        class="md:dark:h-slate-100 md:w-9 md:h-9 w-7 h-7 "
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -102,7 +102,7 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="md:w-9 md:h-9 w-6 h-6 "
+        class="md:w-9 md:h-9 w-7 h-7 "
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

@@ -30,7 +30,7 @@
           ستون سوم : سریال محصول
         </h2>
         <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
-          ستون چهارم : کد شش رقمی
+          ستون چهارم : کد مصحول(حداقل 5 رقم)
         </h2>
         <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
           ستون پنجم : دسته محصول
@@ -45,6 +45,9 @@
           ستون هشتم : محصول کالا فروشی است؟ (باید با صفر و یک باشد)
         </h2>
 
+        <h2 class="my-1 border-t dark:border-amber-300/50 border-amber-700/30">
+          ستون نهم : imei محصول (اختیاری)
+        </h2>
         <h1 class="font-bold">یک یعنی بله صفر یعنی خیر</h1>
       </div>
     </excel-reader-section-vue>
